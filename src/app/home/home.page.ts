@@ -50,9 +50,9 @@ export class HomePage {
 
   // new Question load
   async questionLoad() {
-    let listFilms = await this.openTriviaServ.getQuestionAsync(this.level)
-    let f = listFilms[0]
-    let q: Question = new Question(f.question, f.category, f.difficulty, f.correct_answer, f.incorrect_answers)
+    let listQs = await this.openTriviaServ.getQuestionAsync(this.level)
+    let q1 = listQs[0]
+    let q: Question = new Question(q1.question, q1.category, q1.difficulty, q1.correct_answer, q1.incorrect_answers)
     this.question = q.Quest;
     this.reponses = q.Answers.Reponses;
   }

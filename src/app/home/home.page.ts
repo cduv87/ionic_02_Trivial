@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
+import { OpenTriviaServiceService } from '../open-trivia-service.service';
+import { Question } from '../question';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -18,7 +20,7 @@ export class HomePage {
   name: string = "";
   level: string = "";
   
-  constructor(private alertCtrl: AlertController, private toastCtrl: ToastController) {}
+  constructor(private alertCtrl: AlertController, private toastCtrl: ToastController, private openTriviaServ: OpenTriviaServiceService) {}
 
   // validations
 
@@ -39,11 +41,21 @@ export class HomePage {
       this.showAlert(errorMessage);
     }
     if(this.level.length > 0 && this.name.length >= 3) {
+      this.questionLoad();
       this.formulaireShow = true;
       this.validformShow= false;
     }
   }
-  // test
+
+
+  // new Question load
+  async questionLoad() {
+    let listFilms = await this.openTriviaServ.getQuestionAsync(this.level)
+    let f = listFilms[0]
+    let q: Question = new Question(f.question, f.category, f.difficulty, f.correct_answer, f.incorrect_answers)
+    this.question = q.Quest;
+    this.reponses = q.Answers.Reponses;
+  }
   // reponse
 
   onClickAnswer(reponse) {

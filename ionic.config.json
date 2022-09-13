@@ -1,0 +1,7 @@
+{
+  "name": "Tp_Trivial",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

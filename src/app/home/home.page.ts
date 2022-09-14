@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
+import { DataService } from '../data.service';
 import { OpenTriviaServiceService } from '../open-trivia-service.service';
 import { Question } from '../question';
 import { RandomService } from '../random.service';
@@ -24,7 +25,7 @@ export class HomePage {
   name: string = "";
   level: string = "";
   
-  constructor(private alertCtrl: AlertController, private toastCtrl: ToastController, private openTriviaServ: OpenTriviaServiceService, private randServ: RandomService) {}
+  constructor(private dataSrv: DataService, private alertCtrl: AlertController, private toastCtrl: ToastController, private openTriviaServ: OpenTriviaServiceService, private randServ: RandomService) {}
 
   // validations et init list questions
 
@@ -47,18 +48,14 @@ export class HomePage {
     }
     if(this.level.length > 0 && this.name.length >= 3) {
       this.questionIterator = 0;
-      await this.questionlistLoad();
+      this.listQs = await this.dataSrv.questionlistLoad(this.level);
       this.questionLoad();
       this.formulaireShow = true;
       this.validformShow= false;
     }
   }
 
-  // new Question list
-  async questionlistLoad() {
-    this.listQs = await this.openTriviaServ.getQuestionAsync(this.level);
-    
-  }
+  
   // new question from list
   questionLoad() {
     let q1 = this.listQs[this.questionIterator];

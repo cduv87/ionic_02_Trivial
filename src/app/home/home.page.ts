@@ -72,7 +72,7 @@ export class HomePage {
   // reponse
 
   onClickAnswer(reponse) {
-    this.nextShow = false;
+    
     if(reponse == this.q.Answers.Correct) {
       this.score++;
     }

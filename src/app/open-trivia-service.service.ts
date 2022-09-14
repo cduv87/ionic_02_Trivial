@@ -15,7 +15,7 @@ export class OpenTriviaServiceService {
       category: "Entertainment: Japanese Anime & Manga", 
       type: "multiple", 
       difficulty: "easy", 
-      question: "In &quot;Fairy Tail&quot;, what is the nickname of Natsu Dragneel?", 
+      question: "In \"Fairy Tail\", what is the nickname of Natsu Dragneel?", 
       correct_answer: "The Salamander", 
       incorrect_answers: ["The Dragon Slayer", "The Dragon", "The Demon"] 
     }, 
@@ -23,14 +23,14 @@ export class OpenTriviaServiceService {
       category: "Entertainment: Video Games", 
       type: "boolean", 
       difficulty: "medium", 
-      question: "&quot;Return to Castle Wolfenstein&quot; was the only game of the Wolfenstein series where you don&#039;t play as William &quot;B.J.&quot; Blazkowicz", 
+      question: "\"Return to Castle Wolfenstein\" was the only game of the Wolfenstein series where you don\'t play as William \"B.J.\" Blazkowicz", 
       correct_answer: "False", 
       incorrect_answers: ["True"] 
     }
   ]
 
   return apiData
-  
+
 }
 
 

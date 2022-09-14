@@ -17,7 +17,7 @@
  
     <ion-list>
       <ion-item>
-        <ion-select  interface="popover" placeholder="Select level" [(ngModel)]="level">
+        <ion-select interface="popover" placeholder="Select level" [(ngModel)]="level">
           <ion-select-option value="easy">easy</ion-select-option>
           <ion-select-option value="medium">medium</ion-select-option>
           <ion-select-option value="hard">hard</ion-select-option>
@@ -41,10 +41,13 @@
   <div [hidden]="validformShow">
     <p >Bonjour {{name}} !</p>
     <h2>{{question}}</h2>
-    <ion-button *ngFor="let reponse of reponses" (click)="onClickAnswer(reponse)"  color="medium" shape="round">{{reponse}}</ion-button>
-
+    <div *ngFor="let reponse of reponses" >
+    <ion-button (click)="onClickAnswer(reponse)" [ngClass]="{'green': reponse == q?.Answers.Correct && AnswerEd, 'red': reponse !=  q?.Answers.Correct && AnswerEd, 'medium' : AnswerEd == false}" [disabled]="AnswerEd" shape="round">{{reponse}}</ion-button>
+    </div>
+    <!-- [ngClass]="{'green': reponse == q?.Answers.Correct && , 'red': reponse !=  q?.Answers.Correct}" -->
     <p></p>
-    <ion-button  color="warning" expand="full"  [hidden] ="reponseShow">Question suivante</ion-button>
+    <ion-button  color="warning" expand="full"  (click)="onClickNextQuestion()" [hidden] ="nextShow">Question suivante</ion-button>
+    <ion-button  color="warning" expand="full" [hidden] ="restartShow">Recommencer</ion-button>
   </div>
 
 
